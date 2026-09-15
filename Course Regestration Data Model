@@ -1,0 +1,56 @@
+students: dict[int, dict[str, str]] = {
+    201: {"name": "Farid",
+          "courses": {"cs210", "cs211"}},
+    202: {"name": "Omid",
+          "courses": {"cs211", "cs212"}},
+}
+
+def register_course(student_id: int, course_code: str) -> None:
+    course_list = students[student_id]["courses"]
+    course_list.add(course_code)
+    print(
+        f"{students[student_id]['name']} registered for {course_code}"
+    )
+
+def drop_course(student_id: int, course_code: str) -> None:
+    course_list = students[student_id]["courses"]
+    course_list.discard(course_code)
+    print(
+        f"{students[student_id]['name']} removed from {course_code}"
+    )
+
+def display_student(student_id: int) -> None:
+    student_info = students[student_id]
+    print(f"\nStudent ID: {student_id}")
+    print(f"Name: {student_info['name']}")
+    print(f"Courses: {student_info['courses']}")
+
+print("Initial Student Records:")
+
+display_student(201)
+display_student(202)
+
+print("\n--- registering courses ---")
+register_course(201, "cs213")
+register_course(202, "cs214")
+
+print("\n--- dropping courses ---")
+drop_course(201, "cs210")
+drop_course(202, "cs211")
+
+print("\n--- updated student records ---")
+display_student(201)
+display_student(202)
+
+print("\n--- common courses ---")
+first_courses = students[201]["courses"]
+second_courses = students[202]["courses"]
+
+shared_courses = first_courses.intersection(second_courses)
+print(shared_courses)
+
+print("\n--- all courses ---")
+combined_courses = students[201]["courses"].union(
+    students[202]["courses"]
+)
+print(combined_courses)
