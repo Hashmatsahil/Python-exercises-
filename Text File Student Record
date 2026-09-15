@@ -1,0 +1,18 @@
+def save_student(file_name: str, student_id: int, student_name: str) -> None:
+    with open("records.txt", "a", encoding="utf-8") as file:
+        file.write(f"{student_id} | {student_name}\n")
+
+
+def show_students(file_name: str) -> None:
+    with open("records.txt", "r", encoding="utf-8") as file:
+        for record in file:
+            print(record.rstrip())
+
+
+save_student("records.txt", 11, "Farid")
+save_student("records.txt", 12, "Omid")
+save_student("records.txt", 13, "Karim")
+save_student("records.txt", 14, "Wali")
+save_student("records.txt", 15, "Sami")
+
+show_students("records.txt")
