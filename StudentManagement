@@ -1,0 +1,91 @@
+from abc import ABC, abstractmethod
+
+
+class Person(ABC):
+
+    def __init__(self, full_name, email_address):
+        self.name = full_name
+        self.email = email_address
+
+    @property
+    def email(self):
+        return self._email
+
+    @email.setter
+    def email(self, value):
+        if "@" not in value:
+            raise ValueError("Invalid email format")
+
+        self._email = value
+
+    @abstractmethod
+    def role_info(self):
+        pass
+
+    def __str__(self):
+        return f"{self.name} {self.email}"
+
+
+class Student(Person):
+
+    def __init__(self, full_name, email_address, student_number):
+        super().__init__(full_name, email_address)
+        self.student_id = student_number
+
+    def role_info(self):
+        return f"Student: {self.student_id}"
+
+    def __str__(self):
+        return f"Student: {self.student_id}: {self.name} - {self.email}"
+
+
+class Lecturer(Person):
+
+    def __init__(self, full_name, email_address, lecturer_number):
+        super().__init__(full_name, email_address)
+        self.lecturer_id = lecturer_number
+
+    def role_info(self):
+        return f"Lecturer: {self.lecturer_id}"
+
+    def __str__(self):
+        return f"Lecturer: {self.lecturer_id}: {self.name} - {self.email}"
+
+
+class Course:
+
+    def __init__(self, title):
+        self.course_name = title
+        self.students = []
+
+    def add_student(self, student):
+        self.students.append(student)
+
+    def __str__(self):
+        return f"Course: {self.course_name}, Students: {len(self.students)}"
+
+
+student1 = Student("Michael", "michael@example.com", 11)
+student2 = Student("Sarah", "sarah@gmail.com", 12)
+student3 = Student("Bilal", "bilal@gmail.com", 13)
+
+lecturer1 = Lecturer("Karim", "karim@gmail.com", 11)
+lecturer2 = Lecturer("Naveed", "naveed@gmail.com", 12)
+
+course = Course("Object Oriented Programming")
+
+course.add_student(student1)
+course.add_student(student2)
+
+people = [
+    student1,
+    lecturer2,
+    student3
+]
+
+for person in people:
+    print(person.role_info())
+
+print(student1)
+print(student2)
+print(course)
