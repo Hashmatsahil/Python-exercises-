@@ -1,0 +1,56 @@
+marks = [78, 91, 67, 52, 84, 95, 61, 46, 89, 58]
+print(marks)
+
+highest = max(marks)
+lowest = min(marks)
+average = sum(marks) / len(marks)
+
+print(highest, lowest, average)
+
+passed_marks = [mark for mark in marks if mark >= 60]
+print(passed_marks)
+
+unique_marks = set(marks)
+print(unique_marks)
+
+students = {
+    1: "Farid",
+    2: "Omid",
+    3: "Karim",
+    4: "Basir",
+    5: "Ramin",
+    6: "Wali",
+    7: "Sami",
+    8: "Zubair",
+    9: "Hamid",
+    10: "Nasir"
+}
+
+print(students)
+
+search_id = 7
+
+if search_id in students:
+    print(students[search_id])
+else:
+    print("Student ID not found")
+
+student_data = [
+    ("Farid", 78),
+    ("Omid", 91),
+    ("Karim", 67),
+    ("Basir", 52),
+    ("Ramin", 84),
+    ("Wali", 95),
+    ("Sami", 61),
+    ("Zubair", 46),
+    ("Hamid", 89),
+    ("Nasir", 58)
+]
+
+ordered_students = sorted(student_data, key=lambda x: x[1])
+
+print("Sorted Records")
+
+for record in ordered_students:
+    print(record)
